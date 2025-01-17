@@ -6,6 +6,8 @@ from seqparser import (
 
 import pytest
 
+FASTA_FILE = "data/test.fa"
+FASTQ_FILE = "data/test.fq"
 
 def test_freebie_parser_1():
     """
@@ -33,16 +35,23 @@ def test_FastaParser():
     files that are blank or corrupted in some way. Two example Fasta files are
     provided in /tests/bad.fa and /tests/empty.fa
     """
-    pass
-
+    parser = FastaParser(FASTA_FILE)
+    
+    records = list(parser)
+    assert len(records) == 2
+    assert records[0] == ("seq1", "ACGT")
+    assert records[1] == ("seq2", "TGCA")
+    
 
 def test_FastaFormat():
     """
     Test to make sure that a fasta file is being read in if a fastq file is
     read, the first item is None
     """
-    pass
-
+    parser = FastaParser(FASTQ_FILE)
+    
+    with pytest.raises(ValueError):
+        list(parser)
 
 def test_FastqParser():
     """
@@ -50,11 +59,19 @@ def test_FastqParser():
     an instance of your FastqParser class and assert that it properly reads 
     in the example Fastq File.
     """
-    pass
+    parser = FastqParser(FASTQ_FILE)
+    
+    records = list(parser)
+    assert len(records) == 2
+    assert records[0] == ("seq1", "ACGT", "IIII")
+    assert records[1] == ("seq2", "TGCA", "HHHH")
 
 def test_FastqFormat():
     """
     Test to make sure fastq file is being read in. If this is a fasta file, the
     first line is None
     """
-    pass
+    parser = FastqParser(FASTA_FILE)
+    
+    with pytest.raises(ValueError):
+        list(parser)
