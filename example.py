@@ -21,6 +21,10 @@ def process_sequences(parser, transform_func, file_type):
         sys.exit(1)
 
 
+def stupid():
+    """Ignore me!"""
+    pass
+
 def main():
     """
     The main function
