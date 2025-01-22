@@ -1,4 +1,4 @@
-![BuildStatus](https://github.com/will-johnson98/HW1-FAST-AQ-Parser/.github/workflows/ci.yml/badge.svg?event=push)
+![BuildStatus](https://github.com/will-johnson98/HW1-FAST-AQ-Parser/actions/workflows/ci.yml/badge.svg?event=push)
 
 # Project 1
 Building a FAST[AQ] Parser + Building a DNA -> RNA Transcriber
